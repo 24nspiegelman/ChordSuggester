@@ -1,4 +1,4 @@
-class Note {
+export default class Note {
     constructor(name) {
         this.name = name;
     }
@@ -16,4 +16,3 @@ const DSharpEFlat = new Note("D#/E♭");
 const E = new Note ("E");
 const F = new Note("F");
 const FSharpGFlat = new Note("F#/G♭");
-const placeholder = new Note("Placeholder");
