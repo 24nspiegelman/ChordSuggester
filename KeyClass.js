@@ -1,6 +1,6 @@
 class Key {
-    constructor(name, notes){
-        this.name = name;
+    constructor(notes, chords){
         this.notes = notes;
+        this.chords = chords;
     }
 }

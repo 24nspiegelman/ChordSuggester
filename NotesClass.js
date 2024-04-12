@@ -16,3 +16,5 @@ const DSharpEFlat = new Note("D#/E♭");
 const E = new Note ("E");
 const F = new Note("F");
 const FSharpGFlat = new Note("F#/G♭");
+
+let noteArray = [G, GSharpAFlat, A, ASharpBFlat, B, C, CSharpDFlat, D, DSharpEFlat, E, F, FSharpGFlat]
