@@ -13,23 +13,23 @@ const [key, setKey] = useState();
       onValueChange={(itemValue, itemIndex) =>
       setKey(itemValue)
     }>
-  <Picker.Item label="A" value="java" />
-  <Picker.Item label="A#" value="js" />
-  <Picker.Item label="B♭" value="java" />
-  <Picker.Item label="B" value="java" />
-  <Picker.Item label="C" value="java" />
-  <Picker.Item label="C#" value="java" />
-  <Picker.Item label="D♭" value="java" />
-  <Picker.Item label="D" value="java" />
-  <Picker.Item label="D#" value="java" />
-  <Picker.Item label="E♭" value="java" />
-  <Picker.Item label="E" value="java" />
-  <Picker.Item label="F" value="java" />
-  <Picker.Item label="F#" value="java" />
-  <Picker.Item label="G♭" value="java" />
-  <Picker.Item label="G" value="java" />
-  <Picker.Item label="G#" value="java" />
-  <Picker.Item label="A♭" value="java" />
+  <Picker.Item label="A" value="A" />
+  <Picker.Item label="A#" value="A#" />
+  <Picker.Item label="B♭" value="B♭" />
+  <Picker.Item label="B" value="B" />
+  <Picker.Item label="C" value="C" />
+  <Picker.Item label="C#" value="C#" />
+  <Picker.Item label="D♭" value="D♭" />
+  <Picker.Item label="D" value="D" />
+  <Picker.Item label="D#" value="D#" />
+  <Picker.Item label="E♭" value="E♭" />
+  <Picker.Item label="E" value="E" />
+  <Picker.Item label="F" value="F" />
+  <Picker.Item label="F#" value="F#" />
+  <Picker.Item label="G♭" value="G♭" />
+  <Picker.Item label="G" value="G" />
+  <Picker.Item label="G#" value="G#" />
+  <Picker.Item label="A♭" value="A♭" />
 
 </Picker>
     </View>
