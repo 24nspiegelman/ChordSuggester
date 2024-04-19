@@ -1,17 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import { Dropdown } from 'react-native-material-dropdown-v2-fixed';
 import React,{useState} from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
+import keyBuilder from './KeyBuilder';
+import Key from './KeyClass';
 
 export default function App() {
 
-  const [selected, setSelected] = React.useState("");
+  const [key, setKey] = React.useState("");
+
+  const [scale, setScale] = React.useState("")
 
 
 
-  const data = [
+  const keys = [
     {key: 'A♭', value:'A♭'},
     {key: 'A', value:'A'},
     {key: 'A#', value:'A#'},
@@ -30,15 +32,27 @@ export default function App() {
     {key: 'G', value:'G'},
     {key: 'G#', value:'G#'},
     
+  ];
+    const scales = [
+      {key: 'Major' ,value: 'Major'},
+      {key: 'Minor', value: 'Minor'}
   
 
-
   ];
+  let keyArray = keyBuilder(key, scale);
+  console.log(keyArray[1]);
 return (
+  <View style={styles.container}>
   <View style={styles.dropdownStyles}>
-    <SelectList data={data} setSelected={setSelected} placeholder='Select Key'>
+    <SelectList data={keys} setSelected={setKey} placeholder='Select Key'>
 
     </SelectList>
+  </View>
+  <View style={styles.dropdownStyles}>
+    <SelectList data={scales} setSelected={setScale} placeholder='Select Scale'>
+
+    </SelectList>
+  </View>
   </View>
 )
 }
@@ -48,7 +62,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'center',
   },
   pickerStyles:{
@@ -62,7 +75,7 @@ const styles = StyleSheet.create({
   },
   dropdownStyles:{
     paddingHorizontal:20,
-    paddingVertical:50, 
+    paddingVertical:70, 
     flex: 1
   }
 });
