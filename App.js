@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import React,{useState} from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
 import keyBuilder from './KeyBuilder';
@@ -44,16 +44,17 @@ export default function App() {
 return (
   <View style={styles.container}>
   <View style={styles.dropdownStyles}>
-    <SelectList data={keys} setSelected={setKey} placeholder='Select Key'>
+    <SelectList data={keys} setSelected={setKey} placeholder='Select Key' search={false} >
 
     </SelectList>
   </View>
   <View style={styles.dropdownStyles}>
-    <SelectList data={scales} setSelected={setScale} placeholder='Select Scale'>
+    <SelectList data={scales} setSelected={setScale} placeholder='Select Scale' search={false}>
 
     </SelectList>
   </View>
   </View>
+ 
 
 
 
@@ -78,6 +79,13 @@ const styles = StyleSheet.create({
   dropdownStyles:{
     paddingHorizontal:20,
     paddingVertical:70, 
-    flex: 1
+    flex: 1,
+    color: 'Red'
+  },
+  buttonStyles:{
+    paddingHorizontal:20,
+    paddingVertical:70, 
+    flex: 1,
+    color: 'Red',
   }
 });
