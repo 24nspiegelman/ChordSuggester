@@ -2,6 +2,12 @@ export default class Note {
     constructor(name) {
         this.name = name;
     }
+
+    constructor(name, note1, note2){
+        this.name = name;
+        this.note1 = note1;
+        this.note2 = note2;
+    }
 }
 
 const G = new Note("G");

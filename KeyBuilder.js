@@ -7,23 +7,29 @@ class Note {
 const G = new Note("G");
 const GSharp = new Note("G#");
 const AFlat = new Note("A♭")
+const GSharpAFlat = new Note("G#/A♭")
 const A = new Note("A");
 const ASharp = new Note("A#");
 const BFlat = new Note("B♭")
+const ASharpBFlat = new Note("A#/B♭", "A#", "B♭" )
 const B = new Note("B");
 const C = new Note("C");
 const CSharp = new Note("C#");
-const DFlat = new Note("D♭")
+const DFlat = new Note("D♭");
+const CSharpDFlat = new Note("C#/D♭", "C#", "D♭");
 const D = new Note("D")
 const DSharp = new Note("D#");
-const EFlat = new Note("E♭");
+const EFlat = new Note("E♭")
+const DSharpEFlat = new Note("D#/E♭", "D#", "E♭");
 const E = new Note ("E");
 const F = new Note("F");
-const FSharp = new Note("F#/G♭");
+const FSharp = new Note("F#");
 const GFlat = new Note("G♭");
+const FSharpGFlat = new Note("F#/G♭", "F#", "G♭");
 
 let sharpNoteArray = [A, ASharp, B, C, CSharp, D, DSharp, E, F, FSharp, G, GSharp];
 let flatNoteArray = [A, BFlat, B, C, DFlat, D, EFlat, E, F, GFlat, G, AFlat];
+let noteArray = [A, ASharpBFlat, B, C, CSharpDFlat, D, DSharpEFlat, E, F, FSharpGFlat, G, GSharpAFlat];
 
 
 
