@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import React,{useState} from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
 import keyBuilder from './KeyBuilder';
+import keyBuild2 from './KeyBuild2';
 import Key from './KeyClass';
 
 export default function App() {
@@ -39,7 +40,7 @@ export default function App() {
   
 
   ];
-  let keyArray = keyBuilder(key, scale);
+  let keyArray = keyBuild2(key, scale);
   console.log(keyArray[1]);
 return (
   <View style={styles.container}>
