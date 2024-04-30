@@ -8,12 +8,12 @@ const GSharpAFlat = new Note("G#/A♭");
 const A = new Note("A");
 const ASharpBFlat = new Note("A#/B♭");
 const B = new Note("B");
-const C = new Note("C");
+const C = new Note("B#/C");
 const CSharpDFlat = new Note("C#/D♭");
 const D = new Note("D")
 const DSharpEFlat = new Note("D#/E♭");
 const E = new Note ("E");
-const F = new Note("F");
+const F = new Note("E#/F");
 const FSharpGFlat = new Note("F#/G♭");
 let noteArray = [A, ASharpBFlat, B, C, CSharpDFlat, D, DSharpEFlat, E, F, FSharpGFlat, G, GSharpAFlat];
 export default function keyBuilder(key, scale) {
@@ -28,14 +28,12 @@ export default function keyBuilder(key, scale) {
         steps = minStep
     }
     let noteIndex = 0;
-    while (noteArray[noteIndex].name !== key){
+    while (!noteArray[noteIndex].name.includes(key)){
         noteIndex++;
         if(noteIndex > 11){
             break;
         }
     }
-    console.log("noteIndex: " + noteIndex)
-    console.log("noteArray[noteIndex]1: " + noteArray[noteIndex].name)
     let stepsIndex = 0;
     for(let i = 0; i < 7; i++){
         if(noteIndex >11){

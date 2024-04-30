@@ -4,6 +4,7 @@ import React,{useState} from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
 import keyBuilder from './KeyBuilder';
 import Key from './KeyClass';
+import { Button, SafeAreaView } from 'react-native-web';
 export default function App() {
   const [key, setKey] = React.useState("");
   const [scale, setScale] = React.useState("")
@@ -34,7 +35,6 @@ export default function App() {
   ];
   if(!(key === '') && !(scale === '')){
     let keyArray = keyBuilder(key, scale);
-    console.log(keyArray[1]);
   }
 return (
   <View style={styles.container}>
@@ -49,6 +49,7 @@ return (
     </SelectList>
   </View>
   </View>
+    
 
 
 
