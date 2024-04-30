@@ -1,19 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { Pressable, StyleSheet, Text, View, Button, SafeAreaView } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import React,{useState} from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
 import keyBuilder from './KeyBuilder';
-import keyBuild2 from './KeyBuild2';
 import Key from './KeyClass';
-
 export default function App() {
-
   const [key, setKey] = React.useState("");
-
   const [scale, setScale] = React.useState("")
-
-
-
   const keys = [
     {key: 'A♭', value:'A♭'},
     {key: 'A', value:'A'},
@@ -38,16 +31,12 @@ export default function App() {
       {key: 'Major' ,value: 'Major'},
       {key: 'Minor', value: 'Minor'}
   
-
   ];
-  console.log(key);
-  console.log(scale);
-  if(key != '' && scale != ''){
-    let keyArray = keyBuild2(key, scale);
+  if(!(key === '') && !(scale === '')){
+    let keyArray = keyBuilder(key, scale);
     console.log(keyArray[1]);
   }
 return (
-  <SafeAreaView>
   <View style={styles.container}>
   <View style={styles.dropdownStyles}>
     <SelectList data={keys} setSelected={setKey} placeholder='Select Key' search={false} >
@@ -60,19 +49,11 @@ return (
     </SelectList>
   </View>
   </View>
-  <View style={StyleSheet.container}>
-    <Button
-    title="I">
 
-    </Button>
-  </View>
-  </SafeAreaView>
- 
 
 
 
 )}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
