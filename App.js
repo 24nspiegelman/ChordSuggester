@@ -1,10 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, SafeAreaView, Alert } from 'react-native';
 import React,{useState} from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
 import keyBuilder from './KeyBuilder';
 import Key from './KeyClass';
-import { Button, SafeAreaView } from 'react-native-web';
 export default function App() {
   const [key, setKey] = React.useState("");
   const [scale, setScale] = React.useState("")
@@ -37,18 +36,45 @@ export default function App() {
     let keyArray = keyBuilder(key, scale);
   }
 return (
-  <View style={styles.container}>
-  <View style={styles.dropdownStyles}>
-    <SelectList data={keys} setSelected={setKey} placeholder='Select Key' search={false} >
+  <SafeAreaView style={styles.safeArea}>
+    <View style={styles.container}>
+      <View style={styles.dropdownStyles}>
+        <SelectList data={keys} setSelected={setKey} placeholder='Select Key' search={false} >
 
-    </SelectList>
-  </View>
-  <View style={styles.dropdownStyles}>
-    <SelectList data={scales} setSelected={setScale} placeholder='Select Scale' search={false}>
+        </SelectList>
+      </View>
+      <View style={styles.dropdownStyles}>
+        <SelectList data={scales} setSelected={setScale} placeholder='Select Scale' search={false}>
 
-    </SelectList>
-  </View>
-  </View>
+        </SelectList>
+      </View>
+    </View>
+    <View style={styles.container}>
+      <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
+        <Text style={styles.buttonText}>I</Text>
+      </Pressable>
+      <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
+        <Text style={styles.buttonText}>II</Text>
+      </Pressable>
+      <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
+        <Text style={styles.buttonText}>III</Text>
+      </Pressable>
+      <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
+        <Text style={styles.buttonText}>IV</Text>
+      </Pressable>
+    </View>
+    <View style={styles.container}>
+      <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
+        <Text style={styles.buttonText}>V</Text>
+      </Pressable>
+      <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
+        <Text style={styles.buttonText}>VI</Text>
+      </Pressable>
+      <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
+        <Text style={styles.buttonText}>VII</Text>
+      </Pressable>
+    </View>
+  </SafeAreaView>
     
 
 
@@ -56,11 +82,13 @@ return (
 
 )}
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
+  },
+  container: {
     flexDirection: 'row',
     justifyContent: 'center',
+
   },
   pickerStyles:{
     width:'50%',
@@ -72,15 +100,22 @@ const styles = StyleSheet.create({
     marginLeft: '21%',
   },
   dropdownStyles:{
-    paddingHorizontal:20,
-    paddingVertical:70, 
+    marginHorizontal:20,
+    marginVertical:70, 
     flex: 1,
-    color: 'Red'
   },
   buttonStyles:{
-    paddingHorizontal:20,
-    paddingVertical:70, 
-    flex: 1,
-    color: 'Red',
+    height: 50,
+    width: 50,
+    marginHorizontal: 10,
+    marginVertical: 10,
+    borderRadius: 10,
+    backgroundColor: '#50befa',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText:{
+    fontSize: 40,
+    fontWeight: 'bold',
   }
 });

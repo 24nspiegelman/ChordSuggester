@@ -28,10 +28,7 @@ export default function keyBuilder(key, scale) {
         steps = minStep
     }
     let noteIndex = 0;
-    while (!(noteArray[noteIndex].name === key)){
-        console.log('noteArray[noteIndex].name === key: ' + noteArray[noteIndex].name === key);
-        noteIndex++;
-        console.log('noteArray[noteIndex].name: ' + noteArray[noteIndex].name);
+    while ((noteArray[noteIndex].name !== key)){
         if(noteIndex > 11){
             break;
         }
