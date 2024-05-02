@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Pressable, StyleSheet, Text, View, SafeAreaView, Alert } from 'react-native';
+import { Pressable, StyleSheet, Text, View, SafeAreaView, Alert, Modal} from 'react-native';
 import React,{useState} from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
 import keyBuilder from './KeyBuilder';
@@ -30,8 +30,9 @@ export default function App() {
     const scales = [
       {key: 'Major' ,value: 'Major'},
       {key: 'Minor', value: 'Minor'}
-  
+ 
   ];
+  const [modalOpen, setModalOpen] = useState(false);
   if(!(key === '') && !(scale === '')){
     let keyArray = keyBuilder(key, scale);
   }
@@ -49,7 +50,7 @@ return (
         </SelectList>
       </View>
     </View>
-    <View style={styles.container}>
+    <View style={styles.buttonContainer}>
       <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
         <Text style={styles.buttonText}>I</Text>
       </Pressable>
@@ -63,7 +64,7 @@ return (
         <Text style={styles.buttonText}>IV</Text>
       </Pressable>
     </View>
-    <View style={styles.container}>
+    <View style={styles.buttonContainer}>
       <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
         <Text style={styles.buttonText}>V</Text>
       </Pressable>
@@ -73,6 +74,20 @@ return (
       <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
         <Text style={styles.buttonText}>VII</Text>
       </Pressable>
+    </View>
+    <View style={styles.buttonContainer}>
+      <Pressable style={styles.typeButton} >
+
+      </Pressable>
+    </View>
+    <View>
+      <Modal visible={modalOpen}>
+        <SafeAreaView>
+        <View style={styles.modalContent}>
+          <Text>Hello from the Modal :)</Text>
+        </View>
+        </SafeAreaView>
+      </Modal>
     </View>
   </SafeAreaView>
     
@@ -90,6 +105,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
 
   },
+  buttonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
   pickerStyles:{
     width:'50%',
     height: '30%',
@@ -105,11 +125,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonStyles:{
-    height: 50,
-    width: 50,
+    height: 60,
+    width: 60,
     marginHorizontal: 10,
-    marginVertical: 10,
-    borderRadius: 10,
+    marginVertical: 0,
+    borderRadius: 30,
     backgroundColor: '#50befa',
     justifyContent: 'center',
     alignItems: 'center',
@@ -117,5 +137,74 @@ const styles = StyleSheet.create({
   buttonText:{
     fontSize: 40,
     fontWeight: 'bold',
+  },
+  buttonTwo:{
+    height: 50,
+    width: 50,
+    marginVertical: 0,
+    borderRadius: 25,
+    backgroundColor: '#50befa',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 120,
+  },
+  buttonThree:{
+    height: 50,
+    width: 50,
+    marginVertical: 0,
+    borderRadius: 25,
+    backgroundColor: '#50befa',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 200,
+    marginTop: 35,
+  },
+  buttonFour:{
+    height: 50,
+    width: 50,
+    marginVertical: 0,
+    borderRadius: 25,
+    backgroundColor: '#50befa',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 90,
+  },
+  buttonFive:{
+    height: 50,
+    width: 50,
+    marginVertical: 0,
+    borderRadius: 25,
+    backgroundColor: '#50befa',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 90,
+  },
+  buttonSix:{
+    height: 50,
+    width: 50,
+    marginVertical: 0,
+    borderRadius: 25,
+    backgroundColor: '#50befa',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 90,
+  },
+  buttonSeven:{
+    height: 50,
+    width: 50,
+    marginVertical: 0,
+    borderRadius: 25,
+    backgroundColor: '#50befa',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 90,
+  },
+  typeButton:{
+    marginTop: 20,
+    width: '70%',
+    height: 60,
+    backgroundColor: '#a274fc',
   }
-});
+  }
+
+);
