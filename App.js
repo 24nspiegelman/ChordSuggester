@@ -43,6 +43,22 @@ export default function App() {
   if(!(key === '') && !(scale === '')){
     let keyArray = keyBuilder(key, scale);
   }
+
+
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+
+  // variables
+  const snapPoints = useMemo(() => ['25%', '50%'], []);
+
+  // callbacks
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
+
+
 return (
   <SafeAreaView style={styles.safeArea}>
     <View style={styles.container}>
