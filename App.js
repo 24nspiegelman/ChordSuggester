@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { Pressable, StyleSheet, Text, View, SafeAreaView, Alert, Modal} from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, SafeAreaView, Modal} from 'react-native';
 import React,{useState} from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
 import keyBuilder from './KeyBuilder';
-import Key from './KeyClass';
+import Sheet from 'react-modal-sheet';
+
+
 export default function App() {
   const [key, setKey] = React.useState("");
   const [scale, setScale] = React.useState("")
@@ -32,7 +34,7 @@ export default function App() {
       {key: 'Minor', value: 'Minor'}
  
   ];
-  const [modalOpen, setModalOpen] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
   if(!(key === '') && !(scale === '')){
     let keyArray = keyBuilder(key, scale);
   }
@@ -51,43 +53,49 @@ return (
       </View>
     </View>
     <View style={styles.buttonContainer}>
-      <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
+      <TouchableOpacity style={styles.buttonStyles} onPress={() => alert('Pushed')}>
         <Text style={styles.buttonText}>I</Text>
-      </Pressable>
-      <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.buttonStyles} onPress={() => alert('Pushed')}>
         <Text style={styles.buttonText}>II</Text>
-      </Pressable>
-      <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.buttonStyles} onPress={() => alert('Pushed')}>
         <Text style={styles.buttonText}>III</Text>
-      </Pressable>
-      <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.buttonStyles} onPress={() => alert('Pushed')}>
         <Text style={styles.buttonText}>IV</Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
     <View style={styles.buttonContainer}>
-      <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
+      <TouchableOpacity style={styles.buttonStyles} onPress={() => alert('Pushed')}>
         <Text style={styles.buttonText}>V</Text>
-      </Pressable>
-      <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.buttonStyles} onPress={() => alert('Pushed')}>
         <Text style={styles.buttonText}>VI</Text>
-      </Pressable>
-      <Pressable style={styles.buttonStyles} onPress={() => alert('Pushed')}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.buttonStyles} onPress={() => alert('Pushed')}>
         <Text style={styles.buttonText}>VII</Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
     <View style={styles.buttonContainer}>
-      <Pressable style={styles.typeButton} >
-
-      </Pressable>
+      <TouchableOpacity style={styles.typeButton} onPress={() => setSheetOpen(true)}>
+        <Text style={styles.typeButtonText}> Pick Chord</Text>
+      </TouchableOpacity>
     </View>
     <View>
-      <Modal visible={modalOpen}>
+      <Sheet isOpen={sheetOpen} onClose={(setSheetOpen(false))}>
+
+      </Sheet>
+      
+      {/* <Modal visible={modalOpen}>
         <SafeAreaView>
         <View style={styles.modalContent}>
-          <Text>Hello from the Modal :)</Text>
+          <TouchableOpacity style={styles.closeModalButton} onPress={() => setModalOpen(false)}>
+            <Text style={styles.closeButtonText}>X</Text>
+          </TouchableOpacity>
         </View>
         </SafeAreaView>
-      </Modal>
+      </Modal> */}
     </View>
   </SafeAreaView>
     
@@ -138,72 +146,34 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: 'bold',
   },
-  buttonTwo:{
-    height: 50,
-    width: 50,
-    marginVertical: 0,
-    borderRadius: 25,
-    backgroundColor: '#50befa',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 120,
-  },
-  buttonThree:{
-    height: 50,
-    width: 50,
-    marginVertical: 0,
-    borderRadius: 25,
-    backgroundColor: '#50befa',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 200,
-    marginTop: 35,
-  },
-  buttonFour:{
-    height: 50,
-    width: 50,
-    marginVertical: 0,
-    borderRadius: 25,
-    backgroundColor: '#50befa',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 90,
-  },
-  buttonFive:{
-    height: 50,
-    width: 50,
-    marginVertical: 0,
-    borderRadius: 25,
-    backgroundColor: '#50befa',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 90,
-  },
-  buttonSix:{
-    height: 50,
-    width: 50,
-    marginVertical: 0,
-    borderRadius: 25,
-    backgroundColor: '#50befa',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 90,
-  },
-  buttonSeven:{
-    height: 50,
-    width: 50,
-    marginVertical: 0,
-    borderRadius: 25,
-    backgroundColor: '#50befa',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 90,
-  },
   typeButton:{
     marginTop: 20,
     width: '70%',
     height: 60,
     backgroundColor: '#a274fc',
+    alignItems: 'center',
+    borderRadius: 20,
+  },
+  typeButtonText:{
+    fontSize: 40,
+    fontWeight: 'bold',
+  },
+  modalContent:{
+    flexDirection: 'row-reverse',
+  },
+  closeModalButton:{
+    borderRadius: 20,
+    backgroundColor: 'red',
+    width: 50,
+    height: 50,
+    marginRight: 40,
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  closeButtonText:{
+    fontSize: 45,
+    fontWeight: 'bold',
+    marginLeft: 2,
   }
   }
 
