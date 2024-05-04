@@ -4,6 +4,11 @@ import React,{useState} from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
 import keyBuilder from './KeyBuilder';
 import Sheet from 'react-modal-sheet';
+import {
+  BottomSheetModal,
+  BottomSheetView,
+  BottomSheetModalProvider,
+} from '@gorhom/bottom-sheet';
 
 
 export default function App() {
@@ -17,7 +22,7 @@ export default function App() {
     {key: 'B', value:'B'},
     {key: 'C', value:'C'},
     {key: 'C#', value:'C#'},
-    {key: 'D♭', value:'D♭'},
+    {key: 'D♭', value:'D♭' },
     {key: 'D', value:'D'},
     {key: 'D#', value:'D#'},
     {key: 'E♭', value:'E♭'},
@@ -83,9 +88,25 @@ return (
       </TouchableOpacity>
     </View>
     <View>
-      <Sheet isOpen={sheetOpen} onClose={(setSheetOpen(false))}>
-
-      </Sheet>
+    <BottomSheetModalProvider>
+      <View style={styles.container}>
+        <Button
+          onPress={handlePresentModalPress}
+          title="Present Modal"
+          color="black"
+        />
+        <BottomSheetModal
+          ref={bottomSheetModalRef}
+          index={1}
+          snapPoints={snapPoints}
+          onChange={handleSheetChanges}
+        >
+          <BottomSheetView style={styles.contentContainer}>
+            <Text>Awesome 🎉</Text>
+          </BottomSheetView>
+        </BottomSheetModal>
+      </View>
+    </BottomSheetModalProvider>
       
       {/* <Modal visible={modalOpen}>
         <SafeAreaView>
@@ -174,7 +195,17 @@ const styles = StyleSheet.create({
     fontSize: 45,
     fontWeight: 'bold',
     marginLeft: 2,
-  }
+  },
+  container: {
+    flex: 1,
+    padding: 24,
+    justifyContent: 'center',
+    backgroundColor: 'grey',
+  },
+  contentContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
   }
 
 );
