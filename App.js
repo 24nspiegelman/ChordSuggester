@@ -1,14 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { TouchableOpacity, StyleSheet, Text, View, SafeAreaView, Modal} from 'react-native';
-import React,{useState} from 'react';
+import { TouchableOpacity, StyleSheet, Text, View, SafeAreaView, Modal, Button} from 'react-native';
+import React,{useState, useCallback, useMemo, useRef} from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
 import keyBuilder from './KeyBuilder';
 import Sheet from 'react-modal-sheet';
-import {
-  BottomSheetModal,
-  BottomSheetView,
-  BottomSheetModalProvider,
+import {BottomSheetModal, BottomSheetView, BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 
 export default function App() {
@@ -45,17 +43,15 @@ export default function App() {
   }
 
 
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const bottomSheetModalRef = useRef(null);
 
-  // variables
   const snapPoints = useMemo(() => ['25%', '50%'], []);
 
-  // callbacks
   const handlePresentModalPress = useCallback(() => {
     bottomSheetModalRef.current?.present();
   }, []);
   const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
+    // console.log('handleSheetChanges', index);
   }, []);
 
 
@@ -98,19 +94,15 @@ return (
         <Text style={styles.buttonText}>VII</Text>
       </TouchableOpacity>
     </View>
-    <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.typeButton} onPress={() => setSheetOpen(true)}>
-        <Text style={styles.typeButtonText}> Pick Chord</Text>
-      </TouchableOpacity>
-    </View>
     <View>
-    <BottomSheetModalProvider>
-      <View style={styles.container}>
-        <Button
-          onPress={handlePresentModalPress}
-          title="Present Modal"
-          color="black"
-        />
+      <GestureHandlerRootView>
+      <BottomSheetModalProvider>
+      <View style={styles.modalProvider}>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.typeButton} onPress={handlePresentModalPress}>
+           <Text style={styles.typeButtonText}> Pick Chord</Text>
+          </TouchableOpacity>
+        </View>
         <BottomSheetModal
           ref={bottomSheetModalRef}
           index={1}
@@ -123,16 +115,7 @@ return (
         </BottomSheetModal>
       </View>
     </BottomSheetModalProvider>
-      
-      {/* <Modal visible={modalOpen}>
-        <SafeAreaView>
-        <View style={styles.modalContent}>
-          <TouchableOpacity style={styles.closeModalButton} onPress={() => setModalOpen(false)}>
-            <Text style={styles.closeButtonText}>X</Text>
-          </TouchableOpacity>
-        </View>
-        </SafeAreaView>
-      </Modal> */}
+        </GestureHandlerRootView>
     </View>
   </SafeAreaView>
     
@@ -211,12 +194,6 @@ const styles = StyleSheet.create({
     fontSize: 45,
     fontWeight: 'bold',
     marginLeft: 2,
-  },
-  container: {
-    flex: 1,
-    padding: 24,
-    justifyContent: 'center',
-    backgroundColor: 'grey',
   },
   contentContainer: {
     flex: 1,
