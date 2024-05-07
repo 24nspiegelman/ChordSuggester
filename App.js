@@ -65,7 +65,6 @@ return (
       </View>
       <View style={styles.dropdownStyles}>
         <SelectList data={scales} setSelected={setScale} placeholder='Select Scale' search={false}>
-
         </SelectList>
       </View>
     </View>
@@ -94,29 +93,27 @@ return (
         <Text style={styles.buttonText}>VII</Text>
       </TouchableOpacity>
     </View>
-    <View>
       <GestureHandlerRootView>
-      <BottomSheetModalProvider>
-      <View style={styles.modalProvider}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.typeButton} onPress={handlePresentModalPress}>
-           <Text style={styles.typeButtonText}> Pick Chord</Text>
-          </TouchableOpacity>
-        </View>
-        <BottomSheetModal
-          ref={bottomSheetModalRef}
-          index={1}
-          snapPoints={snapPoints}
-          onChange={handleSheetChanges}
-        >
-          <BottomSheetView style={styles.contentContainer}>
-            <Text>Awesome 🎉</Text>
-          </BottomSheetView>
-        </BottomSheetModal>
-      </View>
-    </BottomSheetModalProvider>
-        </GestureHandlerRootView>
-    </View>
+        <BottomSheetModalProvider>
+          <View style={styles.modalProvider}>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity style={styles.typeButton} onPress={handlePresentModalPress}>
+              <Text style={styles.typeButtonText}> Pick Chord</Text>
+              </TouchableOpacity>
+            </View>
+            <BottomSheetModal
+              ref={bottomSheetModalRef}
+              index={1}
+              snapPoints={snapPoints}
+              onChange={handleSheetChanges}
+            >
+              <BottomSheetView style={styles.contentContainer}>
+                <Text>Awesome 🎉, cool, fantastic, test, test, test, 1, 2, 3, 4, 5</Text>
+              </BottomSheetView>
+            </BottomSheetModal>
+          </View>
+        </BottomSheetModalProvider>
+      </GestureHandlerRootView>
   </SafeAreaView>
     
 
@@ -127,6 +124,7 @@ return (
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
+    backgroundColor: 'green'
   },
   container: {
     flexDirection: 'row',
@@ -197,8 +195,14 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'center'
   },
+  modal:{
+    backgroundColor: 'green',
+  },
+  modalProvider:{
+    backgroundColor: 'red',
+  }
   }
 
 );
