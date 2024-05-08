@@ -9,21 +9,20 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@expo/webpack-config": "^19.0.0",
     "@gorhom/bottom-sheet": "^4.6.1",
-    "@react-native-picker/picker": "2.4.10",
-    "expo": "^49.0.23",
-    "expo-status-bar": "~1.6.0",
-    "expo-updates": "~0.18.19",
+    "@react-native-picker/picker": "2.7.5",
+    "expo": "^51.0.0",
+    "expo-status-bar": "~1.12.1",
+    "expo-updates": "~0.25.9",
     "framer-motion": "^11.1.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-modal-sheet": "^2.2.0",
-    "react-native": "0.72.10",
+    "react-native": "0.74.1",
     "react-native-dropdown-select-list": "^2.0.5",
-    "react-native-gesture-handler": "~2.12.0",
+    "react-native-gesture-handler": "~2.16.1",
     "react-native-material-dropdown-v2-fixed": "^0.11.3",
-    "react-native-reanimated": "~3.3.0",
+    "react-native-reanimated": "3.10.0",
     "react-native-web": "~0.19.6"
   },
   "devDependencies": {
