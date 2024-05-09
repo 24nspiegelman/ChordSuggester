@@ -212,10 +212,8 @@ import { StyleSheet, View, Text, Button } from "react-native";
 import BottomSheet, { BottomSheetSectionList } from "@gorhom/bottom-sheet";
 
 const App = () => {
-  // hooks
   const sheetRef = useRef(null);
 
-  // variables
   const sections = useMemo(
     () =>
       Array(10)
@@ -228,9 +226,8 @@ const App = () => {
         })),
     []
   );
-  const snapPoints = useMemo(() => ["25%", "50%", "90%"], []);
+  const snapPoints = useMemo(() => ["25%", "50%", "100%"], []);
 
-  // callbacks
   const handleSheetChange = useCallback((index) => {
     console.log("handleSheetChange", index);
   }, []);
@@ -241,7 +238,6 @@ const App = () => {
     sheetRef.current?.close();
   }, []);
 
-  // render
   const renderSectionHeader = useCallback(
     ({ section }) => (
       <View style={styles.sectionHeaderContainer}>
@@ -260,7 +256,7 @@ const App = () => {
   );
   return (
     <View style={styles.container}>
-      <Button title="Snap To 90%" onPress={() => handleSnapPress(2)} />
+      <Button title="Snap To 100%" onPress={() => handleSnapPress(2)} />
       <Button title="Snap To 50%" onPress={() => handleSnapPress(1)} />
       <Button title="Snap To 25%" onPress={() => handleSnapPress(0)} />
       <Button title="Close" onPress={() => handleClosePress()} />
