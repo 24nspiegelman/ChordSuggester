@@ -37,39 +37,32 @@ export default function App() {
  
   ];
 
-  const newTasks = [
-    {id: 2, title: "Wax on"},
-    {id: 3, title: "Wax off"},
-    {id: 4, title: "Wax on"}
-  ];
+  const sheetRef = useRef(null);
 
-  const completedTasks = [
-    {id: 5, title: "Watch Karate Kid"},
-    {id: 6, title: "Watch Karate Kid"},
-    {id: 7, title: "Watch Karate Kid"}
-  ];
-const sheetRef = useRef(null);
 
-const sections = useMemo(
-  () =>
-    Array(10)
-      .fill(0)
-      .map((_, index) => ({
-        title: `Section ${index}`,
-        data: Array(10)
-          .fill(0)
-          .map((_, index) => `Item ${index}`),
-      })),
-  []
-);
+  const sections = 
+    [
+    {title: "Major", data:["1", "2"]
+    },
+    {title: "Minor", data: ["3", "4"]
+    },
+    {title: "Dominant Seventh", data: ["3", "4"]
+    },
+    {title: "Minor Seventh", data: ["3", "4"]
+    },
+    {title: "Major Seventh", data: ["3", "4"]
+    },
+
+  ]
+
   const snapPoints = useMemo(() => ["25%", "50%", "90%"], []);
 
   const handleSheetChange = useCallback((index) => {
     console.log("handleSheetChange", index);
-  });
+  }, []);
   const handleSnapPress = useCallback((index) => {
     sheetRef.current?.snapToIndex(index);
-  });
+  }, []);
   const handleClosePress = useCallback(() => {
     sheetRef.current?.close();
   }, []);
@@ -77,13 +70,11 @@ const sections = useMemo(
   const renderSectionHeader = useCallback(
     ({ section }) => (
       <View style={styles.sectionHeaderContainer}>
-        <Text>{section.title}</Text>
+        <Text style={styles.headerText}>{section.title}</Text>
       </View>
     ),
     []
   );
-
-
   const renderItem = useCallback(
     ({ item }) => (
       <View style={styles.itemContainer}>
@@ -121,7 +112,7 @@ return (
 >
   <BottomSheetSectionList
     sections={sections}
-    keyExtractor={(item) => item.id}
+    keyExtractor={(i) => i}
     renderSectionHeader={renderSectionHeader}
     renderItem={renderItem}
     contentContainerStyle={styles.contentContainer}
@@ -211,10 +202,16 @@ contentContainer: {
 sectionHeaderContainer: {
   backgroundColor: "white",
   padding: 6,
+  alignItems: 'center',
 },
 itemContainer: {
   padding: 6,
   margin: 6,
   backgroundColor: "#eee",
 },
+headerText: {
+  color: "#5E06FF",
+  fontWeight: '900',
+  fontSize: '20',
+}
 });
