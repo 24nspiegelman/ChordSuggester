@@ -44,17 +44,25 @@ export default function App() {
   ];
 
   const completedTasks = [
-    {id: 2, title: "Watch Karate Kid"},
-    {id: 3, title: "Watch Karate Kid"},
-    {id: 4, title: "Watch Karate Kid"}
+    {id: 5, title: "Watch Karate Kid"},
+    {id: 6, title: "Watch Karate Kid"},
+    {id: 7, title: "Watch Karate Kid"}
   ];
 const sheetRef = useRef(null);
 
-  const sections = {[
-    { title: 'New Tasks', data: newTasks}, 
-    { title: 'Completed Tasks', data: completedTasks},
-  ]}
-  const snapPoints = useMemo(() => ["25%", "50%", "100%"], []);
+const sections = useMemo(
+  () =>
+    Array(10)
+      .fill(0)
+      .map((_, index) => ({
+        title: `Section ${index}`,
+        data: Array(10)
+          .fill(0)
+          .map((_, index) => `Item ${index}`),
+      })),
+  []
+);
+  const snapPoints = useMemo(() => ["25%", "50%", "90%"], []);
 
   const handleSheetChange = useCallback((index) => {
     console.log("handleSheetChange", index);
@@ -66,18 +74,24 @@ const sheetRef = useRef(null);
     sheetRef.current?.close();
   }, []);
 
-  const renderSectionHeader = {( {section }) => (
-    <View style={styles.sectionHeader}>
-    <Text>{section.title}</Text>
-    </View>
-  )}
+  const renderSectionHeader = useCallback(
+    ({ section }) => (
+      <View style={styles.sectionHeaderContainer}>
+        <Text>{section.title}</Text>
+      </View>
+    ),
+    []
+  );
 
 
-  const renderItem = {( { item } ) => (
-    <View style={styles.row}>
-    <Text>{item.title}</Text>
-    </View>
-  )}
+  const renderItem = useCallback(
+    ({ item }) => (
+      <View style={styles.itemContainer}>
+        <Text>{item}</Text>
+      </View>
+    ),
+    []
+  );
 
 
 return (
@@ -95,6 +109,10 @@ return (
     </View>
     
   <GestureHandlerRootView>
+      <Button title="Snap To 90%" onPress={() => handleSnapPress(2)} />
+      <Button title="Snap To 50%" onPress={() => handleSnapPress(1)} />
+      <Button title="Snap To 25%" onPress={() => handleSnapPress(0)} />
+      <Button title="Close" onPress={() => handleClosePress()} />
   <BottomSheet
   ref={sheetRef}
   index={1}
