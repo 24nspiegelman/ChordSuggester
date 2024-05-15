@@ -37,6 +37,10 @@ export default function App() {
  
   ];
 
+  if(!(key === '') && !(scale === '')){
+    let keyArray = keyBuilder(key, scale);
+  }
+
   const sheetRef = useRef(null);
 
 

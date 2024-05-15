@@ -7,18 +7,23 @@ class Note {
 }
 
 
-const G = new Note("G");
-const GSharpAFlat = new Note("G#/A♭");
-const A = new Note("A");
-const ASharpBFlat = new Note("A#/B♭");
-const B = new Note("B");
-const C = new Note("C");
-const CSharpDFlat = new Note("C#/D♭");
-const D = new Note("D");
-const DSharpEFlat = new Note("D#/E♭");
-const E = new Note ("E");
-const F = new Note("F");
-const FSharpGFlat = new Note("F#/G♭");
+let G = new Note("G");
+let GSharpAFlat = new Note("G#/A♭");
+let AFlat = new Note("A♭");
+let A = new Note("A");
+let ASharpBFlat = new Note("A#/B♭");
+let BFlat = new Note("B♭")
+let B = new Note("B");
+let C = new Note("C");
+let CSharpDFlat = new Note("C#/D♭");
+let DFlat = new Note("D♭")
+let D = new Note("D");
+let DSharpEFlat = new Note("D#/E♭");
+let EFlat = new Note("E♭");
+let E = new Note ("E");
+let F = new Note("F");
+let FSharpGFlat = new Note("F#/G♭");
+let GFlat = new Note("G♭");
 
 let noteArray = [A, ASharpBFlat, B, C, CSharpDFlat, D, DSharpEFlat, E, F, FSharpGFlat, G, GSharpAFlat];
 
@@ -26,33 +31,45 @@ const majStep = [2, 2, 1, 2, 2, 2];
 const minStep = [2, 1, 2 ,2, 1, 2];
 
 
+function sharpsToFlats(){
+    GSharpAFlat = AFlat;
+    ASharpBFlat = BFlat;
+    CSharpDFlat = DFlat;
+    DSharpEFlat = EFlat;
+    FSharpGFlat = GFlat;
+}
 export default function keyBuilder(key, scale){
     let keyArray = new Array(7);
     let steps = [];
-    if(key === 'A#'){
-        key = 'B♭'
-    };
-    if(key === 'G#'){
-        key = 'A♭'
-    };
-    if(key === 'C#'){
-        key = 'D♭'
-    };
-    if(key === 'D#'){
-        key = 'E♭'
-    };
-    if(key === 'F#'){
-        key = 'G♭'
-    };
+    if(key === 'G#' || key === 'A♭'){
+        key = 'A♭';
+        sharpsToFlats();
+    }
+    if(key === 'A#' || key === 'B♭'){
+        key = 'B♭';
+        sharpsToFlats();
+    }
+    if(key === 'C#' ||  key === 'D♭'){
+        key = 'D♭';
+        sharpsToFlats();
+    }
+    if(key === 'D#' || key === 'E♭'){
+        key = 'E♭';
+        sharpsToFlats();
+    }
+    if(key === 'F#' || key === 'G♭'){
+        key = 'G♭';
+        sharpsToFlats();
+    }
+
     
     if(scale === "Major"){
         steps = majStep;
-    };
+    }
     else if(scale === "Minor"){
         steps = minStep
-    };
+    }
     let noteIndex = 0;
-
 
     while (!noteArray[noteIndex].name.includes(key)){
         noteIndex++;
@@ -78,6 +95,8 @@ export default function keyBuilder(key, scale){
     console.log("4: " + keyArray[4].name);
     console.log("5: " + keyArray[5].name);
     console.log("6: " + keyArray[6].name);
+    console.log("\n");
+    
 
 
     return keyArray;
