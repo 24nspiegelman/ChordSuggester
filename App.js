@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { TouchableOpacity, StyleSheet, Text, View, SafeAreaView, Modal, Button} from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, SafeAreaView, Modal, Button, Pressable} from 'react-native';
 import React,{useState, useCallback, useMemo, useRef} from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
 import keyBuilder from './KeyBuilder';
@@ -46,6 +46,9 @@ export default function App() {
 
   const sections = 
     [
+    {title: "Tonic", data:["1", "2"]
+
+    },
     {title: "Major", data:["1", "2"]
     },
     {title: "Minor", data: ["3", "4"]
@@ -59,7 +62,7 @@ export default function App() {
 
   ]
 
-  const snapPoints = useMemo(() => ["25%", "50%", "90%"], []);
+  const snapPoints = useMemo(() => ["25%", "50%", "80%", "85%"], []);
 
   const handleSheetChange = useCallback((index) => {
     console.log("handleSheetChange", index);
@@ -104,16 +107,22 @@ return (
     </View>
     
   <GestureHandlerRootView>
-      <Button title="Snap To 90%" onPress={() => handleSnapPress(2)} />
-      <Button title="Snap To 50%" onPress={() => handleSnapPress(1)} />
-      <Button title="Snap To 25%" onPress={() => handleSnapPress(0)} />
-      <Button title="Close" onPress={() => handleClosePress()} />
+    <View style={styles.typeButtonView}>
+    <Pressable style={styles.typeButton} onPress={() => handleSnapPress(2)}>
+      <Text style={styles.typeButtonText}>Pick Chord</Text>
+        </Pressable>
+      </View>
   <BottomSheet
   ref={sheetRef}
   index={1}
   snapPoints={snapPoints}
   onChange={handleSheetChange}
 >
+  <View style={styles.closeModalButtonView}>
+  <Pressable style={styles.closeModalButton} onPress={() => handleClosePress()} >
+    <Text style={styles.closeButtonText}> X </Text>
+    </Pressable>
+    </View>
   <BottomSheetSectionList
     sections={sections}
     keyExtractor={(i) => i}
@@ -144,14 +153,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  pickerStyles:{
-    width:'50%',
-    height: '30%',
-    backgroundColor:'green',
-    color:'white',
+  typeButtonView:{
     justifyContent: 'center',
-    marginTop: '15%',
-    marginLeft: '21%',
+    alignItems: 'center',
   },
   dropdownStyles:{
     marginHorizontal:20,
@@ -187,17 +191,22 @@ const styles = StyleSheet.create({
   modalContent:{
     flexDirection: 'row-reverse',
   },
+  closeModalButtonView:{
+    flexDirection: 'row-reverse',
+  },
   closeModalButton:{
     borderRadius: 20,
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     marginRight: 40,
     marginTop: 20,
+    backgroundColor: '#a9a9a9',
     alignItems: 'center',
   },
   closeButtonText:{
-    fontSize: 45,
+    color: 'black',
     fontWeight: 'bold',
+    fontSize: 30,
     marginLeft: 2,
   },
 contentContainer: {
