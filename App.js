@@ -46,18 +46,18 @@ export default function App() {
 
   const sections = 
     [
-    {title: "Tonic", data:["1", "2"]
+    {title: "Diatonic", data:["1", "2", "3", "4", "5", "6", "7"]
 
     },
-    {title: "Major", data:["1", "2"]
+    {title: "Major", data:["1", "2", "3", "4", "5", "6", "7"]
     },
-    {title: "Minor", data: ["3", "4"]
+    {title: "Minor", data: ["1", "2", "3", "4", "5", "6", "7"]
     },
-    {title: "Dominant Seventh", data: ["3", "4"]
+    {title: "Dominant Seventh", data: ["1", "2", "3", "4", "5", "6", "7"]
     },
-    {title: "Minor Seventh", data: ["3", "4"]
+    {title: "Major Seventh", data: ["1", "2", "3", "4", "5", "6", "7"]
     },
-    {title: "Major Seventh", data: ["3", "4"]
+    {title: "Minor Seventh", data: ["1", "2", "3", "4", "5", "6", "7"]
     },
 
   ]
@@ -91,7 +91,6 @@ export default function App() {
     []
   );
 
-
 return (
   <SafeAreaView style={styles.safeArea}>
     <View style={styles.container}>
@@ -106,21 +105,22 @@ return (
       </View>
     </View>
     
-  <GestureHandlerRootView>
     <View style={styles.typeButtonView}>
     <Pressable style={styles.typeButton} onPress={() => handleSnapPress(2)}>
       <Text style={styles.typeButtonText}>Pick Chord</Text>
         </Pressable>
       </View>
+
+  <GestureHandlerRootView>
   <BottomSheet
   ref={sheetRef}
-  index={1}
+  index={-1}
   snapPoints={snapPoints}
   onChange={handleSheetChange}
 >
   <View style={styles.closeModalButtonView}>
   <Pressable style={styles.closeModalButton} onPress={() => handleClosePress()} >
-    <Text style={styles.closeButtonText}> X </Text>
+    <Text style={styles.closeButtonText}> Close Window</Text>
     </Pressable>
     </View>
   <BottomSheetSectionList
@@ -153,10 +153,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  typeButtonView:{
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   dropdownStyles:{
     marginHorizontal:20,
     marginVertical:70, 
@@ -176,16 +172,19 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: 'bold',
   },
+  typeButtonView:{
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   typeButton:{
-    marginTop: 20,
-    width: '70%',
-    height: 60,
+    width: 130,
+    height: 30,
     backgroundColor: '#a274fc',
     alignItems: 'center',
-    borderRadius: 20,
+    borderRadius: 10,
   },
   typeButtonText:{
-    fontSize: 40,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   modalContent:{
@@ -195,19 +194,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
   },
   closeModalButton:{
-    borderRadius: 20,
-    width: 40,
-    height: 40,
-    marginRight: 40,
+    borderRadius: 5,
+    width: 110,
+    height: 20,
     marginTop: 20,
-    backgroundColor: '#a9a9a9',
+    backgroundColor: '#Ff1f20',
     alignItems: 'center',
   },
   closeButtonText:{
-    color: 'black',
-    fontWeight: 'bold',
-    fontSize: 30,
-    marginLeft: 2,
+    color: 'white',
+    fontSize: 15,
   },
 contentContainer: {
   backgroundColor: "white",
