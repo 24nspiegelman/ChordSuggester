@@ -6,6 +6,7 @@ import keyBuilder from './KeyBuilder';
 import Sheet from 'react-modal-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import BottomSheet, { BottomSheetSectionList, BottomSheetModal, BottomSheetView, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import chordBuilder from './ChordBuilder.js';
 
 
 export default function App() {
