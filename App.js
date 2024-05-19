@@ -7,6 +7,8 @@ import Sheet from 'react-modal-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import BottomSheet, { BottomSheetSectionList, BottomSheetModal, BottomSheetView, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import chordBuilder from './ChordBuilder.js';
+import { Chord, Interval, Note, Scale } from "tonal";
+import TonalKeyBuilder from './TonalKeyBuilder.js';
 
 
 export default function App() {
@@ -34,12 +36,39 @@ export default function App() {
   ];
     const scales = [
       {key: 'Major' ,value: 'Major'},
-      {key: 'Minor', value: 'Minor'}
+      {key: 'Natural Minor', value: 'Natural Minor'},
+      {key: 'Dorian', value: 'Dorian'},
+      {key: 'Phrygian', value: 'Phrygian'},
+      {key: 'Lydian', value: 'Lydian'},
+      {key: 'Mixolydian', value: 'Mixolydian'},
+      {key: 'Locrian', value: 'Locrian'},
+      {key: 'Harmonic Major', value: 'Harmonic Major'},
+      {key: 'Harmonic Minor', value: 'Harmonic Minor'},
+      {key: 'Hungarian Minor', value: 'Hungarian Minor'},
+      {key: 'Jazz Minor', value: 'Jazz Minor'},
+      {key: 'Major Blues', value: 'Major Blues'},
+      {key: 'Minor Blues', value: 'Minor Blues'},
+      {key: 'Prometheus', value: 'Prometheus'},
+      {key: 'Augmented', value: 'Augmented'},
+      {key: 'Diminished', value: 'Diminished'},
+      {key: 'Aeolian Dominant', value: 'Aeolian Dominant'},
+      {key: 'Phrygian Dominant', value: 'Phrygian Dominant'},
+      {key: 'Whole Tone', value: 'Whole Tone'},
+      {key: 'Neapolitan Major', value: 'Neapolitan Major'},
+      {key: 'Neapolitan Minor', value: 'Neapolitan Minor'},
+      {key: 'Persian', value: 'Persian'},
+      {key: 'Double Harmonic Major', value: 'Double Harmonic Major'},
+      {key: 'Altered Dominant', value: 'Altered Dominant'},
+      {key: 'Major Pentatonic', value: 'Major Pentatonic'},
+      {key: 'Minor Pentatonic', value: 'Minor Pentatonic'},
+      {key: 'Neutral Pentatonic', value: 'Neutral Pentatonic'},
  
   ];
 
+  let chosenScale = Scale.get("C Major");
   if(!(key === '') && !(scale === '')){
-    let keyArray = keyBuilder(key, scale);
+    let keyScale = key + " " + scale;
+     chosenScale = Scale.get(keyScale);
   }
 
   const sheetRef = useRef(null);
@@ -47,8 +76,7 @@ export default function App() {
 
   const sections = 
     [
-    {title: "Diatonic", data:["1", "2", "3", "4", "5", "6", "7"]
-
+    {title: "Diatonic", data:[chosenScale.notes[0]]
     },
     {title: "Major", data:["1", "2", "3", "4", "5", "6", "7"]
     },
@@ -101,7 +129,7 @@ return (
         </SelectList>
       </View>
       <View style={styles.dropdownStyles}>
-        <SelectList data={scales} setSelected={setScale} placeholder='Select Scale' search={false}>
+        <SelectList data={scales} setSelected={setScale} placeholder='Select Scale' >
         </SelectList>
       </View>
     </View>
