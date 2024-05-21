@@ -7,7 +7,7 @@ import Sheet from 'react-modal-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import BottomSheet, { BottomSheetSectionList, BottomSheetModal, BottomSheetView, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import chordBuilder from './ChordBuilder.js';
-import { Chord, Interval, Note, Scale } from "tonal";
+import { Chord, Interval, Note, Scale, Key } from "tonal";
 import TonalKeyBuilder from './TonalKeyBuilder.js';
 
 
@@ -36,7 +36,7 @@ export default function App() {
   ];
     const scales = [
       {key: 'Major' ,value: 'Major'},
-      {key: 'Natural Minor', value: 'Natural Minor'},
+      {key: 'Minor', value: 'Minor'},
       {key: 'Dorian', value: 'Dorian'},
       {key: 'Phrygian', value: 'Phrygian'},
       {key: 'Lydian', value: 'Lydian'},
@@ -65,10 +65,11 @@ export default function App() {
  
   ];
 
+  console.log(Scale.names())
   let chosenScale = Scale.get("C Major");
   if(!(key === '') && !(scale === '')){
-    let keyScale = key + " " + scale;
-     chosenScale = Scale.get(keyScale);
+     if()
+    chosenScale = ;
   }
 
   const sheetRef = useRef(null);
@@ -76,7 +77,7 @@ export default function App() {
 
   const sections = 
     [
-    {title: "Diatonic", data:[chosenScale.notes[0]]
+    {title: "Diatonic", data:[chosenScale.notes[0], chosenScale.notes[1], chosenScale.notes[2], chosenScale.notes[3], chosenScale.notes[4], chosenScale.notes[5], chosenScale.notes[6]]
     },
     {title: "Major", data:["1", "2", "3", "4", "5", "6", "7"]
     },
