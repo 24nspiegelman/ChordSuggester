@@ -64,15 +64,10 @@ export default function App() {
  
   ];
 
-  console.log(Scale.names())
   let chosenScale = Scale.get("C Major");
   if(!(key === '') && !(scale === '')){
     chosenScale = Scale.get(key + " " + scale);
-    // if(ScaleType.get(chosenScale).quality === 'Major'){
-    //   chosenScale = chosenScale.
-    // }
   }
-
   const sheetRef = useRef(null);
 
 
@@ -83,7 +78,7 @@ export default function App() {
 
   ]
 
-  const snapPoints = useMemo(() => ["25%", "50%", "80%", "85%"], []);
+  const snapPoints = useMemo(() => [ "55%", "85%", "90%"], []);
 
   const handleSheetChange = useCallback((index) => {
     console.log("handleSheetChange", index);
@@ -94,6 +89,12 @@ export default function App() {
   const handleClosePress = useCallback(() => {
     sheetRef.current?.close();
   }, []);
+
+  let chordViewerPosition = 0;
+  let chordViewerArray = [];
+  // function chordPress(chord){
+
+  // }
 
   const renderSectionHeader = useCallback(
     ({ section }) => (
@@ -106,7 +107,9 @@ export default function App() {
   const renderItem = useCallback(
     ({ item }) => (
       <View style={styles.itemContainer}>
-        <Text>{item}</Text>
+        <TouchableOpacity style={styles.itemStyle}>
+        <Text style={styles.itemText}>{item}</Text>
+        </TouchableOpacity>
       </View>
     ),
     []
@@ -125,9 +128,26 @@ return (
         </SelectList>
       </View>
     </View>
+    <View style={styles.chordViewerView}>
+    <View style={styles.chordViewer}>
+
+      <View style={styles.chordBox}>
+        </View>
+
+      <View style={styles.chordBox}>
+          </View>
+
+      <View style={styles.chordBox}>
+        </View>
+      
+      <View style={styles.chordBox}>
+        </View>
+
+      </View>
+      </View>
     
     <View style={styles.typeButtonView}>
-    <Pressable style={styles.typeButton} onPress={() => handleSnapPress(2)}>
+    <Pressable style={styles.typeButton} onPress={() => handleSnapPress(1)}>
       <Text style={styles.typeButtonText}>Pick Chord</Text>
         </Pressable>
       </View>
@@ -176,7 +196,8 @@ const styles = StyleSheet.create({
   },
   dropdownStyles:{
     marginHorizontal:20,
-    marginVertical:70, 
+    marginVertical:50, 
+    marginTop: 20,
     flex: 1,
   },
   buttonStyles:{
@@ -228,6 +249,7 @@ const styles = StyleSheet.create({
   },
 contentContainer: {
   backgroundColor: "white",
+  // flexDirection: 'row',
 },
 sectionHeaderContainer: {
   backgroundColor: "white",
@@ -237,11 +259,42 @@ sectionHeaderContainer: {
 itemContainer: {
   padding: 6,
   margin: 6,
+  width: 60,
+  height: 60,
+  borderRadius: 10,
   backgroundColor: "#eee",
+  alignItems: 'center',
+  justifyContent: 'center',
 },
 headerText: {
   color: "#5E06FF",
   fontWeight: '900',
   fontSize: '20',
+},
+itemStyle: {
+  alignItems: 'center',
+},
+itemText:{
+  fontSize: 30,
+  fontWeight:'bold',
+},
+chordViewerView: {
+  alignItems: 'center',
+  marginBottom: 20,
+},
+chordViewer:{
+  height: 60,
+  width: '80%',
+  backgroundColor: '#E5C3FF',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center'
+},
+chordBox:{
+  height: 55,
+  width: 55,
+  borderRadius: 10,
+  backgroundColor: 'black',
+  marginHorizontal: 10
 }
 });
