@@ -66,14 +66,20 @@ export default function App() {
 
   let chosenScale = Scale.get("C Major");
   if(!(key === '') && !(scale === '')){
-    chosenScale = Scale.get(key + " " + scale);
+    if(scale.contains("Major")){
+      chosenScale = Scale.get(key + " " + scale);
+    }
   }
+
+ 
   const sheetRef = useRef(null);
 
 
   const sections = 
     [
-    {title: "Triad", data:[chosenScale.notes[0], chosenScale.notes[1], chosenScale.notes[2], chosenScale.notes[3], chosenScale.notes[4], chosenScale.notes[5], chosenScale.notes[6]]
+    // {title: "Triad", data:[getChord(0), getChord(1), getChord(2), getChord(3), getChord(4), getChord(5), getChord(6)]
+    // },
+    {title: "Triad", data:[chosenScale.notes[0], chosenScale.notes[1], chosenScale.notes[2], chosenScale.notes[3], chosenScale.notes[4], chosenScale.notes[5], chosenScale.notes[0]]
     },
 
   ]
