@@ -12,7 +12,7 @@ import { Chord, Interval, Note, Scale, Key, ScaleType } from "tonal";
 
 export default function App() {
   const [key, setKey] = React.useState("");
-  const [scale, setScale] = React.useState("")
+  const [type, setType] = React.useState("")
   const keys = [
     {key: 'A♭', value:'A♭'},
     {key: 'A', value:'A'},
@@ -33,6 +33,10 @@ export default function App() {
     {key: 'G#', value:'G#'},
     
   ];
+    const types = [
+      {key: 'Major', value: 'Major'},
+      {key: 'Minor', value: 'Major'},
+    ]
     const scales = [
       {key: 'Major' ,value: 'Major'},
       {key: 'Minor', value: 'Minor'},
@@ -112,7 +116,7 @@ export default function App() {
   );
   const renderItem = useCallback(
     ({ item }) => (
-      <View style={styles.itemContainer}>
+      <View style={styles.itemContainer} key={item}>
         <TouchableOpacity style={styles.itemStyle}>
         <Text style={styles.itemText}>{item}</Text>
         </TouchableOpacity>
@@ -130,7 +134,7 @@ return (
         </SelectList>
       </View>
       <View style={styles.dropdownStyles}>
-        <SelectList data={scales} setSelected={setScale} placeholder='Select Scale' >
+        <SelectList data={types} setSelected={setType} placeholder='Select Type' >
         </SelectList>
       </View>
     </View>
