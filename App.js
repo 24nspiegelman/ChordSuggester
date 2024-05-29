@@ -70,12 +70,42 @@ export default function App() {
     }
   }
 
+  function getSeventhChord(i) {
+    let root = chosenScale.notes[i];
+    i += 2;
+    if (i > 6) {
+      i = i % 7;
+    }
+    let third = chosenScale.notes[i];
+    i += 2;
+    if (i > 6) {
+      i = i % 7;
+    }
+    let fifth = chosenScale.notes[i];
+    i += 2;
+    if (i > 6) {
+      i = i % 7;
+    }
+    let seventh = chosenScale.notes[i];
+
+    const chord = Chord.detect([root, third, fifth, seventh]);
+    if (chord.length > 0) {
+      return chord[0];
+    } else {
+      return "Unknown";
+    }
+  }
+
   const sheetRef = useRef(null);
 
   const sections = [
     {
       title: "Triad",
       data: [getChord(0), getChord(1), getChord(2), getChord(3), getChord(4), getChord(5), getChord(6)]
+    },
+    {
+    title: "Seventh",
+    data: [getSeventhChord(0), getSeventhChord(1), getSeventhChord(2), getSeventhChord(3), getSeventhChord(4), getSeventhChord(5), getSeventhChord(6)]
     },
   ];
 
