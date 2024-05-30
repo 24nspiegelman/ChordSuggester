@@ -5,15 +5,15 @@ import { SelectList } from 'react-native-dropdown-select-list';
 import keyBuilder from './KeyBuilder';
 import Sheet from 'react-modal-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import BottomSheet, { BottomSheetSectionList, BottomSheetModal, BottomSheetView, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import BottomSheet, { BottomSheetSectionList } from "@gorhom/bottom-sheet";
 import chordBuilder from './ChordBuilder.js';
 import { Chord, Interval, Note, Scale, Key, ScaleType } from "tonal";
 
-
 export default function App() {
-  const [key, setKey] = React.useState("");
-  const [type, setType] = React.useState("");
-  const [chosenScale, setChosenScale] = React.useState(Scale.get("C Major"));
+  const [key, setKey] = useState("");
+  const [type, setType] = useState("");
+  const [chosenScale, setChosenScale] = useState(Scale.get("C Major"));
+  const [selectedChords, setSelectedChords] = useState([]);
 
   const keys = [
     { key: 'A♭', value: 'A♭' },
@@ -46,21 +46,18 @@ export default function App() {
     }
   }, [key, type]);
 
-  function getChord(i) {
+  const getChord = (i) => {
     let root = chosenScale.notes[i];
-    console.log(root);
     i += 2;
     if (i > 6) {
       i = i % 7;
     }
     let third = chosenScale.notes[i];
-    console.log(third);
     i += 2;
     if (i > 6) {
       i = i % 7;
     }
     let fifth = chosenScale.notes[i];
-    console.log(fifth);
 
     const chord = Chord.detect([root, third, fifth]);
     if (chord.length > 0) {
@@ -68,9 +65,9 @@ export default function App() {
     } else {
       return "Unknown";
     }
-  }
+  };
 
-  function getSeventhChord(i) {
+  const getSeventhChord = (i) => {
     let root = chosenScale.notes[i];
     i += 2;
     if (i > 6) {
@@ -94,6 +91,15 @@ export default function App() {
     } else {
       return "Unknown";
     }
+  };
+
+  const getPentatonic = (i) => {
+    if(type.value === 'Major'){
+
+    }
+    else{
+
+    }
   }
 
   const sheetRef = useRef(null);
@@ -104,8 +110,8 @@ export default function App() {
       data: [getChord(0), getChord(1), getChord(2), getChord(3), getChord(4), getChord(5), getChord(6)]
     },
     {
-    title: "Seventh",
-    data: [getSeventhChord(0), getSeventhChord(1), getSeventhChord(2), getSeventhChord(3), getSeventhChord(4), getSeventhChord(5), getSeventhChord(6)]
+      title: "Seventh",
+      data: [getSeventhChord(0), getSeventhChord(1), getSeventhChord(2), getSeventhChord(3), getSeventhChord(4), getSeventhChord(5), getSeventhChord(6)]
     },
   ];
 
@@ -130,10 +136,28 @@ export default function App() {
     []
   );
 
+  const handleChordPress = (chord) => {
+    setSelectedChords((prevSelectedChords) => {
+      const newChords = [...prevSelectedChords];
+      if (newChords.length >= 4) {
+        newChords.shift();
+      }
+      newChords.push(chord);
+      return newChords;
+    });
+  };
+
+  const clearChords = () => {
+    setSelectedChords([]);
+  };
+
   const renderItem = useCallback(
     ({ item }) => (
       <View style={styles.itemContainer} key={item}>
-        <TouchableOpacity style={styles.itemStyle}>
+        <TouchableOpacity 
+          style={styles.itemStyle} 
+          onPress={() => handleChordPress(item)}
+        >
           <Text style={styles.itemText}>{item}</Text>
         </TouchableOpacity>
       </View>
@@ -148,18 +172,22 @@ export default function App() {
           <SelectList data={keys} setSelected={setKey} placeholder='Select Key' search={false} />
         </View>
         <View style={styles.dropdownStyles}>
-          <SelectList data={types} setSelected={setType} placeholder='Select Type' />
+          <SelectList data={types} setSelected={setType} placeholder='Select Type' search={false} />
         </View>
       </View>
       <View style={styles.chordViewerView}>
         <View style={styles.chordViewer}>
-          <View style={styles.chordBox}></View>
-          <View style={styles.chordBox}></View>
-          <View style={styles.chordBox}></View>
-          <View style={styles.chordBox}></View>
+          {selectedChords.map((chord, index) => (
+            <View key={index} style={styles.chordBox}>
+              <Text style={styles.chordText}>{chord}</Text>
+            </View>
+          ))}
         </View>
       </View>
       <View style={styles.typeButtonView}>
+      <Pressable style={styles.clearButton}onPress={clearChords}>
+        <Text style={styles.typeButtonText}>Clear</Text>
+      </Pressable>
         <Pressable style={styles.typeButton} onPress={() => handleSnapPress(1)}>
           <Text style={styles.typeButtonText}>Pick Chord</Text>
         </Pressable>
@@ -238,6 +266,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  clearButton:{
+    width: 130,
+    height: 30,
+    backgroundColor: '#42bcf5',
+    alignItems: 'center',
+    borderRadius: 10,
+    marginBottom: 10
+  },
   modalContent:{
     flexDirection: 'row-reverse',
   },
@@ -293,16 +329,23 @@ chordViewerView: {
 chordViewer:{
   height: 60,
   width: '80%',
-  backgroundColor: '#E5C3FF',
+  backgroundColor: '#c2c2c2',
   flexDirection: 'row',
   alignItems: 'center',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  opacity: .5,
+  borderRadius: 20
 },
 chordBox:{
   height: 55,
   width: 55,
   borderRadius: 10,
-  backgroundColor: 'black',
-  marginHorizontal: 10
+  backgroundColor: '#1fde52',
+  marginHorizontal: 10,
+  alignItems: 'center',
+  justifyContent: 'center'
+},
+chordBoxText:{
+  
 }
 });
