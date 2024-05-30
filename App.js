@@ -359,7 +359,7 @@ headerText: {
 itemStyle: {
   alignItems: 'center',
   backgroundColor: '#FFC107',
-  width: 125,
+  width: 200,
   height: 50,
   justifyContent: 'center',
   borderRadius: 13,
