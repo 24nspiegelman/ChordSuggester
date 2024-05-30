@@ -120,19 +120,16 @@ export default function App() {
     bluesScale = Scale.get(chosenScale.name + " blues");
  
      let root = bluesScale.notes[i];
-     console.log(root);
      i += 2;
      if (i > 5) {
        i = i % 6;
      }
      let third = bluesScale.notes[i];
-     console.log(third);
      i += 2;
      if (i > 5) {
        i = i % 6;
      }
      let fifth = bluesScale.notes[i];
-     console.log(fifth);
  
      const chord = Chord.detect([root, third, fifth]);
      if (chord.length > 0) {
