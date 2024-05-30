@@ -162,7 +162,7 @@ export default function App() {
   ];
 
 
-  const snapPoints = useMemo(() => ["55%", "85%", "90%"], []);
+  const snapPoints = useMemo(() => ["55%", "85%", "90%", "99%"], []);
 
   const handleSheetChange = useCallback((index) => {
     console.log("handleSheetChange", index);
@@ -359,6 +359,10 @@ headerText: {
 itemStyle: {
   alignItems: 'center',
   backgroundColor: '#FFC107',
+  width: 125,
+  height: 50,
+  justifyContent: 'center',
+  borderRadius: 13,
 },
 itemText:{
   fontSize: 30,
