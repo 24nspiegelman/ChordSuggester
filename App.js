@@ -288,6 +288,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     backgroundColor: '#E9ECEF',
     flex: 1,
+    positon: 'absolute',
   },
   typeButtonView:{
     justifyContent: 'center',
