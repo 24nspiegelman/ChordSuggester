@@ -94,13 +94,53 @@ export default function App() {
   };
 
   const getPentatonic = (i) => {
-    if(type.value === 'Major'){
+   pentatonicScale = Scale.get(chosenScale.name + " Pentatonic");
 
+    let root = pentatonicScale.notes[i];
+    i += 2;
+    if (i > 4) {
+      i = i % 5;
     }
-    else{
+    let third = pentatonicScale.notes[i];
+    i += 2;
+    if (i > 4) {
+      i = i % 5;
+    }
+    let fifth = pentatonicScale.notes[i];
 
+    const chord = Chord.detect([root, third, fifth]);
+    if (chord.length > 0) {
+      return chord[0];
+    } else {
+      return "Unknown";
     }
   }
+
+  const getBlues = (i) => {
+    bluesScale = Scale.get(chosenScale.name + " blues");
+ 
+     let root = bluesScale.notes[i];
+     console.log(root);
+     i += 2;
+     if (i > 5) {
+       i = i % 6;
+     }
+     let third = bluesScale.notes[i];
+     console.log(third);
+     i += 2;
+     if (i > 5) {
+       i = i % 6;
+     }
+     let fifth = bluesScale.notes[i];
+     console.log(fifth);
+ 
+     const chord = Chord.detect([root, third, fifth]);
+     if (chord.length > 0) {
+       return chord[0];
+     } else {
+       return "Unknown";
+     }
+   }
 
   const sheetRef = useRef(null);
 
@@ -113,7 +153,17 @@ export default function App() {
       title: "Seventh",
       data: [getSeventhChord(0), getSeventhChord(1), getSeventhChord(2), getSeventhChord(3), getSeventhChord(4), getSeventhChord(5), getSeventhChord(6)]
     },
+    {
+      title: "Pentatonic",
+      data: [getPentatonic(0), getPentatonic(1), getPentatonic(2), getPentatonic(3), getPentatonic(4)]
+    },
+    {
+      title: "Blues",
+      data: [getBlues(0), getBlues(1), getBlues(2), getBlues(3), getBlues(4), getBlues(5)]
+    },
+
   ];
+
 
   const snapPoints = useMemo(() => ["55%", "85%", "90%"], []);
 
@@ -179,7 +229,7 @@ export default function App() {
         <View style={styles.chordViewer}>
           {selectedChords.map((chord, index) => (
             <View key={index} style={styles.chordBox}>
-              <Text style={styles.chordText}>{chord}</Text>
+              <Text style={styles.chordBoxText}>{chord}</Text>
             </View>
           ))}
         </View>
@@ -202,7 +252,7 @@ export default function App() {
         >
           <View style={styles.closeModalButtonView}>
             <Pressable style={styles.closeModalButton} onPress={handleClosePress}>
-              <Text style={styles.closeButtonText}>Close Window</Text>
+              <Text style={styles.closeButtonText}>Close</Text>
             </Pressable>
           </View>
           <BottomSheetSectionList
@@ -282,9 +332,10 @@ const styles = StyleSheet.create({
   },
   closeModalButton:{
     borderRadius: 5,
-    width: 110,
+    width: 75,
     height: 20,
     marginTop: 20,
+    marginHorizontal: 25,
     backgroundColor: '#Ff1f20',
     alignItems: 'center',
   },
@@ -328,24 +379,25 @@ chordViewerView: {
 },
 chordViewer:{
   height: 60,
-  width: '80%',
-  backgroundColor: '#c2c2c2',
+  width: '90%',
+  backgroundColor: '#d9dbda',
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
-  opacity: .5,
   borderRadius: 20
 },
 chordBox:{
   height: 55,
-  width: 55,
-  borderRadius: 10,
+  width: 70,
+  borderRadius: 15,
   backgroundColor: '#1fde52',
   marginHorizontal: 10,
   alignItems: 'center',
   justifyContent: 'center'
 },
 chordBoxText:{
-  
+color: 'black',
+fontWeight: 'bold',
+fontSize: 15,
 }
 });
