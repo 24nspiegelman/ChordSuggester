@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { TouchableOpacity, StyleSheet, Text, View, SafeAreaView, Modal, Button, Pressable } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, SafeAreaView, ScrollView, Modal, Button, Pressable } from 'react-native';
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
 import keyBuilder from './KeyBuilder';
@@ -268,38 +268,26 @@ export default function App() {
   );
 }
 const styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+    backgroundColor: '#F8F9FA',
+  },
   safeArea: {
     flex: 1,
+    backgroundColor: '#F8F9FA',
   },
   container: {
     flexDirection: 'row',
     justifyContent: 'center',
-
-  },
-  buttonContainer: {
-    justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row',
+    backgroundColor: '#F8F9FA',
   },
   dropdownStyles:{
     marginHorizontal:20,
     marginVertical:50, 
     marginTop: 20,
+    backgroundColor: '#E9ECEF',
     flex: 1,
-  },
-  buttonStyles:{
-    height: 60,
-    width: 60,
-    marginHorizontal: 10,
-    marginVertical: 0,
-    borderRadius: 30,
-    backgroundColor: '#50befa',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonText:{
-    fontSize: 40,
-    fontWeight: 'bold',
   },
   typeButtonView:{
     justifyContent: 'center',
@@ -308,18 +296,19 @@ const styles = StyleSheet.create({
   typeButton:{
     width: 130,
     height: 30,
-    backgroundColor: '#a274fc',
+    backgroundColor: '#28A745',
     alignItems: 'center',
     borderRadius: 10,
   },
   typeButtonText:{
     fontSize: 20,
     fontWeight: 'bold',
+    color: '#FFFFFF'
   },
   clearButton:{
     width: 130,
     height: 30,
-    backgroundColor: '#42bcf5',
+    backgroundColor: '#FD7E14',
     alignItems: 'center',
     borderRadius: 10,
     marginBottom: 10
@@ -336,42 +325,47 @@ const styles = StyleSheet.create({
     height: 20,
     marginTop: 20,
     marginHorizontal: 25,
-    backgroundColor: '#Ff1f20',
+    backgroundColor: '#DC3545',
     alignItems: 'center',
   },
   closeButtonText:{
-    color: 'white',
+    color: '#FFFFFF',
     fontSize: 15,
   },
 contentContainer: {
-  backgroundColor: "white",
+  backgroundColor: '#F8F9FA',
+  
 },
 sectionHeaderContainer: {
-  backgroundColor: "white",
+  backgroundColor: '#6F42C1',
   padding: 6,
   alignItems: 'center',
 },
 itemContainer: {
   padding: 6,
   margin: 6,
-  width: '95%',
+  width: "97%",
   height: 60,
   borderRadius: 10,
-  backgroundColor: "#eee",
   alignItems: 'center',
   justifyContent: 'center',
+  borderBottomWidth: 1,
+  borderBottomColor: '#E9ECEF',
+  backgroundColor: "#E9ECEF"
 },
 headerText: {
-  color: "#5E06FF",
+  color: '#FFFFFF',
   fontWeight: '900',
   fontSize: '20',
 },
 itemStyle: {
   alignItems: 'center',
+  backgroundColor: '#FFC107',
 },
 itemText:{
   fontSize: 30,
   fontWeight:'bold',
+  color: '#343A40',
 },
 chordViewerView: {
   alignItems: 'center',
@@ -390,7 +384,7 @@ chordBox:{
   height: 55,
   width: 70,
   borderRadius: 15,
-  backgroundColor: '#1fde52',
+  backgroundColor: '#1E90FF',
   marginHorizontal: 10,
   alignItems: 'center',
   justifyContent: 'center'
